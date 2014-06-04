@@ -1,4 +1,5 @@
 class Pitcher
+  attr_reader :player
 
 def initialize(player)
   @player = player

@@ -1,6 +1,8 @@
 require_relative 'maths'
 
 class Batter
+  attr_reader :player
+
 
   def initialize(player)
     @player = player
@@ -29,13 +31,13 @@ end
 def contact?(placement, batter_contact, pitcher_velocity)
   #MLB batters make contact with swung-at strikes 88% of the time
   if placement == :strike
-    if rand < log_five ((batter_contact + 2 / 3 * (100 - batter_contact), pitcher_velocity)
+    if rand < log_five((batter_contact + 2 / 3 * (100 - batter_contact), pitcher_velocity)
       contact = true
     else
       contact = false
     end
   #MLB batters make contact with strikes 68% of the time
-    if rand < ((batter_contact + 1 / 3 * (100 - batter_contact), pitcher_velocity)
+    if rand < log_five((batter_contact + 1 / 3 * (100 - batter_contact)), pitcher_velocity)
     contact = true
     else
     contact = false
@@ -45,9 +47,25 @@ def contact?(placement, batter_contact, pitcher_velocity)
   contact
 end
 
+def fair_ball?
+  #batters foul of 40.5% of balls they make contact with (does not count foulouts)
+  if rand < log_five((batter_contact + 1 / 6 * (100 - pitcher)), pitcher_velocity)
+    ball = :fair
+  else
+    if rand(10) > 1
+      ball = :foul
+    else
+      ball = :out
+    end
+  end
+  ball
+end
+
+
+
+
 def hit_where?(batter_power)
-  #with power of 100 this equates to one homerun ever 10 at-bats, a 50+ homerun season
-  #this will be very sensitive so most players will have power <50
+  #
   roll = rand(900 + batter_power)
   if roll > 900
   #homerun
