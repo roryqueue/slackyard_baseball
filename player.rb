@@ -13,3 +13,6 @@ class Player
   end
 
 end
+
+miguel = Player.new("Miguel", "Cabrera", 90, 95, 50, 50, 70, 70)
+cc = Player.new("CC", "Sabathia", 50, 50, 95, 90, 50, 20)
