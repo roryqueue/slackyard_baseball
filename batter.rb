@@ -47,7 +47,6 @@ class Batter
       end
     # else raise "batter_contact error!"
     end
-    binding.pry
     contact
   end
 
@@ -62,6 +61,7 @@ class Batter
         ball = :out
       end
     end
+    binding.pry
     ball
   end
 
