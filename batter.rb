@@ -50,50 +50,41 @@ class Batter
     contact
   end
 
-  def fair_ball?
+  def fair_ball?(batter_contact, pitcher_velocity)
     #batters foul of 40.5% of balls they make contact with (does not count foulouts)
-    if rand < log_five((batter_contact + 1 / 6 * (100 - pitcher)), pitcher_velocity)
+    if rand < log_five((batter_contact + 1 / 6 * (100 - batter_contact)), pitcher_velocity)
       ball = :fair
     else
       if rand(10) > 1
         ball = :foul
       else
-        ball = :out
+        ball = :foulout
       end
     end
-    binding.pry
     ball
   end
 
-
-
-
-  def hit_where?(batter_power)
-    #
-    roll = rand(900 + batter_power)
-    if roll > 900
-    #homerun
-      hit_to = 0
-    elsif roll > 800
-      hit_to = 9
-    elsif roll > 700
-      hit_to = 8
-    elsif roll > 600
-      hit_to = 7
-    elsif roll > 500
-      hit_to = 6
-    elsif roll > 400
-      hit_to = 5
-    elsif roll > 300
-      hit_to = 4
-    elsif roll > 200
-      hit_to = 3
-    elsif roll > 100
-      hit_to = 2
-    elsif roll > 0
-      hit_to = 1
-    # else raise "hit_where? error!"
+  def hit?(batter_contact)
+    if rand(200 + batter_contact) > batter_contact
+      ball = :out
+    else
+      ball = :hit
     end
-    hit_to
+    ball
   end
+
+  def extra_bases?(batter_power, batter_speed)
+    #hits are: 67.6% singles, 19.5% doubles, 1.9% triples, 11.0% homeruns
+    roll = rand(280 + batter_power + batter_speed)
+    if roll < (batter_power / 2)
+      hit = :homerun
+    elsif roll < ((batter_power / 2) + (batter_speed / 8))
+      hit = :triple
+    elsif roll < (batter_power + batter_speed)
+      hit = :double
+    else hit = :single
+    end
+    hit
+  end
+
 end

@@ -1,11 +1,14 @@
 class Count
-  attr_reader :pitches, :balls, :strikes
+  attr_accessor :pitches, :balls, :strikes
 
   def initialize
     @pitches = 0
     @balls = 0
-    @balls = 0
+    @strikes = 0
   end
 
+  def record(pitch)
+
+  end
 
 end

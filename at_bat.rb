@@ -1,33 +1,42 @@
-require_relative 'batter'
-require_relative 'pitcher'
-require_relative 'player'
-require_relative 'maths'
+# require_relative 'batter'
+# require_relative 'pitcher'
+# require_relative 'player'
+# require_relative 'maths'
 
-class AtBat
+# class AtBat
+#   attr_reader :pitcher, :batter
+#   attr_accessor :count, :result
+#   def initialize(batter, pitcher)
+#   @batter = batter
+#   @pitcher = pitcher
+#   @count = Count.new
+#   @result = nil
+#   end
 
-  def initialize(batter, pitcher)
-  @batter = batter
-  @pitcher = pitcher
-  @balls = 0
-  @strikes = 0
-  end
+#   def execute
+#     until result != nil
+#     pitch = Pitch.new
+#   end
 
-  def execute
-    until hit == true || strikeout == true || walk == true
-    pitch = self.pitcher.placement(player.throwing_accuracy)
-    end
-  end
+#   def update_count(pitch)
+#     pitch += 1
+#     if pitch.swing == false
+#       if pitch.placement =
+#         count.strikes += 1
+#     elsif pitch.swing == true && pitch.contact == false
 
-  def hit?
+#   end
 
-  end
+#   def hit?
 
-  def strikeout?
+#   end
 
-  end
+#   def strikeout?
 
-  def walk?
+#   end
 
-  end
+#   def walk?
 
-end
+#   end
+
+# end
