@@ -2,7 +2,7 @@ require_relative 'maths'
 require 'pry'
 
 class Batter
-  attr_reader :player
+  attr_reader :player, :hit
 
 
   def initialize(player)
@@ -84,6 +84,7 @@ class Batter
       hit = :double
     else hit = :single
     end
+    @hit = hit
     hit
   end
 
