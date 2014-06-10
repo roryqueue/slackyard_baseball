@@ -72,4 +72,21 @@ class BasePath
     end
     player.team.score += 1
   end
+
+  def walk(player)
+    if third.man_on != nil
+      player.team.score += 1
+      third.man_on = nil
+    end
+    if second.man_on != nil
+      third.man_on = second.man_on
+      second.man_on = nil
+    end
+    if first.man_on != nil
+      second.man_on = first.man_on
+      first.man_on = nil
+    end
+    first.man_on = player
+  end
+
 end
