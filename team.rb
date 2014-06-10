@@ -9,7 +9,7 @@ class Team
     @positions = positions
     @batting_order = batting_order
     @score = 0
-    @pitcher = Pitcher.new(positions[0])
+    @pitcher = positions[0]
   end
 
 end

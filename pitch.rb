@@ -1,6 +1,5 @@
 require 'pry'
-require_relative 'batter'
-require_relative 'pitcher'
+
 require_relative 'player'
 require_relative 'maths'
 
@@ -10,7 +9,7 @@ class Pitch
   def initialize(pitcher, batter)
     @pitcher = pitcher
     @batter = batter
-    @placement = pitcher.placement(pitcher.player.throwing_accuracy)
+    @placement = pitcher.pitch_placement
     @swing = batter.swing?(placement)
     @contact = contact_check
     @fair_or_foul = fair_foul_check
@@ -20,7 +19,7 @@ class Pitch
 
   def contact_check
     if swing == true
-      ct_check = batter.contact?(placement, pitcher.player.throwing_accuracy, batter.player.batting_contact)
+      ct_check = batter.contact?(placement, pitcher.throwing_accuracy)
     else ct_check = nil
     end
     ct_check
@@ -28,7 +27,7 @@ class Pitch
 
   def fair_foul_check
     if contact == true
-      ff_check = batter.fair_ball?(batter.player.batting_contact, pitcher.player.throwing_velocity)
+      ff_check = batter.fair_ball?(pitcher.throwing_velocity)
     else ff_check = nil
     end
     ff_check
@@ -36,7 +35,7 @@ class Pitch
 
   def hit_checker
     if fair_or_foul == :fair
-      hit = batter.hit?(batter.player.batting_contact)
+      hit = batter.hit?
     else hit = nil
     end
     hit
@@ -44,7 +43,7 @@ class Pitch
 
   def extra_bases_checker
     if hit_or_out == :hit
-    bases = batter.extra_bases?(batter.player.batting_power, batter.player.speed)
+    bases = batter.extra_bases?
     else bases = nil
     end
     bases

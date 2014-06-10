@@ -10,7 +10,7 @@ class BattingOrder
 
   def next!
     batter = rotation.first
-    rotation.rotate
+    rotation.rotate!
     batter
   end
 end

@@ -1,21 +1,22 @@
 require_relative 'base'
 
 class BasePath
-  attr_reader :first, :second, :third
+  attr_reader :first, :second, :third, :runs
 
   def initialize
     @first = Base.new
     @second = Base.new
     @third = Base.new
+    @runs = 0
   end
 
   def single(player)
     if third.man_on != nil
-      player.team.score += 1
+      @runs += 1
       third.man_on = nil
     end
     if second.man_on != nil
-      player.team.score += 1
+      @runs += 1
       second.man_on = nil
     end
     if first.man_on != nil
@@ -27,15 +28,15 @@ class BasePath
 
   def double(player)
     if third.man_on != nil
-      player.team.score += 1
+      @runs += 1
       third.man_on = nil
     end
     if second.man_on != nil
-      player.team.score += 1
+      @runs += 1
       second.man_on = nil
     end
     if first.man_on != nil
-      player.team.score += 1
+      @runs += 1
       first.man_on = nil
     end
     second.man_on = player
@@ -43,15 +44,15 @@ class BasePath
 
   def triple(player)
     if third.man_on != nil
-      player.team.score += 1
+      @runs += 1
       third.man_on = nil
     end
     if second.man_on != nil
-      player.team.score += 1
+      @runs += 1
       second.man_on = nil
     end
     if first.man_on != nil
-      player.team.score += 1
+      @runs += 1
       first.man_on = nil
     end
     third.man_on = player
@@ -59,23 +60,23 @@ class BasePath
 
   def homerun(player)
     if third.man_on != nil
-      player.team.score += 1
+      @runs += 1
       third.man_on = nil
     end
     if second.man_on != nil
-      player.team.score += 1
+      @runs += 1
       second.man_on = nil
     end
     if first.man_on != nil
-      player.team.score += 1
+      @runs += 1
       first.man_on = nil
     end
-    player.team.score += 1
+    @runs += 1
   end
 
   def walk(player)
     if third.man_on != nil
-      player.team.score += 1
+      @runs += 1
       third.man_on = nil
     end
     if second.man_on != nil

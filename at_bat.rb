@@ -1,5 +1,4 @@
-require_relative 'batter'
-require_relative 'pitcher'
+
 require_relative 'player'
 require_relative 'maths'
 
