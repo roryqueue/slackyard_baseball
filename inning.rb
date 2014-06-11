@@ -1,4 +1,5 @@
 require_relative 'half_inning'
+require 'pry'
 
 
 class Inning
@@ -18,6 +19,10 @@ class Inning
     away_score = away_bats.runs
     home_bats = HalfInning.new(away_team, home_team)
     home_score = home_bats.runs
+    puts away_score
+    puts "away from: #{away_bats.runs}"
+    puts home_score
+    puts "home from: #{home_bats.runs}"
   end
 
 end

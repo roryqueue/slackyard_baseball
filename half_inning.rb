@@ -4,7 +4,8 @@ require_relative 'batting_order'
 require 'pry'
 
 class HalfInning
-  attr_reader :fielding_team, :batting_team, :batting_order, :pitcher, :outs, :base_path, :runs
+  attr_reader :fielding_team, :batting_team, :batting_order, :pitcher, :outs, :base_path
+  attr_accessor :runs
 
   def initialize(fielding_team, batting_team)
     @fielding_team = fielding_team
@@ -22,7 +23,6 @@ class HalfInning
     at_bat = AtBat.new(fielding_team.pitcher, batting_team.batting_order.next!)
     update_half_inning(at_bat)
     until outs >= 3
-      binding.pry
       at_bat = AtBat.new(fielding_team.pitcher, batting_team.batting_order.next!)
       update_half_inning(at_bat)
     end
@@ -56,7 +56,7 @@ class HalfInning
     elsif at_bat.result == :walk
       base_path.walk(at_bat.batter)
     end
-    @runs = base_path.runs
+    runs = base_path.run_count
   end
 
 end

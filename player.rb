@@ -80,7 +80,7 @@ class Player
   end
 
   def hit?
-    if rand(200 + batting_contact) > batting_contact
+    if rand(100 + batting_contact) > batting_contact
       ball = :out
     else
       ball = :hit
