@@ -63,83 +63,83 @@ class HalfInning
 
 
   def single(player)
-    if base_path.third.man_on != nil
+    if base_path.man_on_third != nil
       add_run
-      base_path.third.man_on = nil
+      base_path.man_on_third = nil
     end
-    if base_path.second.man_on != nil
+    if base_path.man_on_second != nil
       add_run
-      base_path.second.man_on = nil
+      base_path.man_on_second = nil
     end
-    if base_path.first.man_on != nil
-      base_path.second.man_on = base_path.first.man_on
-      base_path.first.man_on = nil
+    if base_path.man_on_first != nil
+      base_path.man_on_second = base_path.man_on_first
+      base_path.man_on_first = nil
     end
-    base_path.first.man_on = player
+    base_path.man_on_first = player
   end
 
   def double(player)
-    if base_path.third.man_on != nil
+    if base_path.man_on_third != nil
       add_run
-      base_path.third.man_on = nil
+      base_path.man_on_third = nil
     end
-    if base_path.second.man_on != nil
+    if base_path.man_on_second != nil
       add_run
-      base_path.second.man_on = nil
+      base_path.man_on_second = nil
     end
-    if base_path.first.man_on != nil
+    if base_path.man_on_first != nil
       add_run
-      base_path.first.man_on = nil
+      base_path.man_on_first = nil
     end
-    base_path.second.man_on = player
+    base_path.man_on_second = player
   end
 
   def triple(player)
-    if base_path.third.man_on != nil
+    if base_path.man_on_third != nil
       add_run
-      base_path.third.man_on = nil
+      base_path.man_on_third = nil
     end
-    if base_path.second.man_on != nil
+    if base_path.man_on_second != nil
       add_run
-      base_path.second.man_on = nil
+      base_path.man_on_second = nil
     end
-    if base_path.first.man_on != nil
+    if base_path.man_on_first != nil
       add_run
-      base_path.first.man_on = nil
+      base_path.man_on_first = nil
     end
-    base_path.third.man_on = player
+    base_path.man_on_third = player
   end
 
   def homerun(player)
-    if base_path.third.man_on != nil
+    if base_path.man_on_third != nil
       add_run
-      base_path.third.man_on = nil
+      base_path.man_on_third = nil
     end
-    if base_path.second.man_on != nil
+    if base_path.man_on_second != nil
       add_run
-      base_path.second.man_on = nil
+      base_path.man_on_second = nil
     end
-    if base_path.first.man_on != nil
+    if base_path.man_on_first != nil
       add_run
-      base_path.first.man_on = nil
+      base_path.man_on_first = nil
     end
     add_run
   end
 
   def walk(player)
-    if base_path.third.man_on != nil && base_path.second.man_on != nil && base_path.first.man_on != nil
+    if base_path.man_on_third != nil && base_path.man_on_second != nil && base_path.man_on_first != nil
       add_run
-      base_path.third.man_on = nil
+      base_path.man_on_third = nil
     end
-    if base_path.second.man_on != nil
-      base_path.third.man_on = base_path.second.man_on && base_path.first.man_on != nil
-      base_path.second.man_on = nil
+    if base_path.man_on_second != nil
+      base_path.man_on_third = base_path.man_on_second && base_path.man_on_first != nil
+      base_path.man_on_second = nil
     end
-    if base_path.first.man_on != nil
-      base_path.second.man_on = base_path.first.man_on
-      base_path.first.man_on = nil
+    if base_path.man_on_first != nil
+      base_path.man_on_second = base_path.man_on_first
+      base_path.man_on_first = nil
     end
-    base_path.first.man_on = player
+    base_path.man_on_first = player
   end
 
   def add_run
