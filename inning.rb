@@ -16,9 +16,9 @@ class Inning
 
   def play
     away_bats = HalfInning.new(home_team, away_team)
-    away_score = away_bats.runs
+    @away_score = away_bats.runs
     home_bats = HalfInning.new(away_team, home_team)
-    home_score = home_bats.runs
+    @home_score = home_bats.runs
   end
 
 end

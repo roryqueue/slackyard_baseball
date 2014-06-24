@@ -1,8 +1,8 @@
-require_relative 'game'
+require_relative 'inning'
 require 'pry'
 
 class Game
-  attr_reader :home_team, :away_team, :home_score, :away_score, :inning_number
+  attr_accessor :home_team, :away_team, :home_score, :away_score, :inning_number
 
   def initialize(home_team, away_team)
     @home_team = home_team
@@ -24,8 +24,8 @@ class Game
 
   def play_inning(home_team, away_team, inning_number)
     inning = Inning.new(home_team, away_team, inning_number)
-    @home_score += inning.home_score
     @away_score += inning.away_score
+    @home_score += inning.home_score
     @inning_number += 1
   end
 end

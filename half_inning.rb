@@ -25,10 +25,8 @@ class HalfInning
     until outs >= 3
       at_bat = AtBat.new(fielding_team.pitcher, batting_team.batting_order.next!)
       update_half_inning(at_bat)
-      # puts base_path.run_count
     end
     runs = base_path.run_count
-    puts runs
   end
 
   def update_half_inning(at_bat)
@@ -59,6 +57,7 @@ class HalfInning
     elsif at_bat.result == :walk
       walk(at_bat.batter)
     end
+    @runs = base_path.run_count
   end
 
 

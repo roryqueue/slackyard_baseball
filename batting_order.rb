@@ -1,5 +1,4 @@
 
-
 class BattingOrder
   attr_reader :order, :rotation
 

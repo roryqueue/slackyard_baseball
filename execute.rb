@@ -35,7 +35,7 @@ mets = Team.new([justin],mets_order)
 
 game = Game.new(yankees, mets)
 
-puts game.home
+# puts game
 # 10.times do
 #   pitch = Pitch.new(cc, miguel)
 #   pitch_array = ["placement: #{pitch.placement}", "swing?: #{pitch.swing}", "contact?: #{pitch.contact}", "fair or foul?: #{pitch.fair_or_foul}", "hit?: #{pitch.hit_or_out}", "hit type?: #{pitch.hit_type}", "==================="]
