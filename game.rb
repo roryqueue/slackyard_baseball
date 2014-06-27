@@ -26,6 +26,8 @@ class Game
     inning = Inning.new(home_team, away_team, inning_number)
     @away_score += inning.away_score
     @home_score += inning.home_score
+    puts "away score: #{away_score}"
+    puts "home score: #{home_score}"
     @inning_number += 1
   end
 end

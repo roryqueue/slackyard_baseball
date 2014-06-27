@@ -3,22 +3,24 @@ require_relative 'player'
 require_relative 'maths'
 
 class AtBat
-  attr_reader :pitcher, :batter
+  attr_reader :pitcher, :batter, :fielding_team
   attr_accessor :count, :result
 
-  def initialize(pitcher, batter)
+  def initialize(fielding_team, batter)
     @batter = batter
-    @pitcher = pitcher
+    @fielding_team = fielding_team
+    @pitcher = fielding_team.pitcher
     @count = Count.new
     play
   end
 
   def play
-    pitch = Pitch.new(pitcher, batter)
+    pitch = Pitch.new(fielding_team, batter)
     update_count(pitch)
     until result_test(pitch) != nil
-    pitch = Pitch.new(pitcher, batter)
+    pitch = Pitch.new(fielding_team, batter)
     update_count(pitch)
+    puts "#{count.pitches} pitches, #{count.balls} balls, #{count.strikes} strikes"
     end
   end
 
@@ -30,10 +32,10 @@ class AtBat
       elsif pitch.placement == :ball
         count.balls += 1
       end
-    elsif pitch.swing == true
+    elsif pitch.swing
       if pitch.contact == false
         count.strikes +=1
-      elsif pitch.contact == true && pitch.fair_or_foul == :foul && count.strikes < 2
+      elsif pitch.contact && pitch.fair_or_foul == :foul && count.strikes < 2
         count.strikes += 1
       end
     end
@@ -49,12 +51,14 @@ class AtBat
 
   def result_test(pitch)
     result = nil
-    if pitch.fair_foul_check == :foulout || pitch.hit_or_out == :out || strikeout? == true
+    if pitch.fair_foul_check == :foulout || strikeout?
       result = :out
-    elsif pitch.hit_or_out == :hit
+    elsif pitch.hit_or_fielded == :hit
       result = pitch.hit_type
-    elsif walk? == true
+    elsif walk?
       result = :walk
+    elsif pitch.out_or_error
+      result = pitch.out_or_error
     end
     @result = result
     result

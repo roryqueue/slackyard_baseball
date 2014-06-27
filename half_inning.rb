@@ -20,11 +20,13 @@ class HalfInning
 
   def play
     #play succession of at bats
-    at_bat = AtBat.new(fielding_team.pitcher, batting_team.batting_order.next!)
+    at_bat = AtBat.new(fielding_team, batting_team.batting_order.next!)
     update_half_inning(at_bat)
+    puts "#{outs} outs, #{runs} runs"
     until outs >= 3
-      at_bat = AtBat.new(fielding_team.pitcher, batting_team.batting_order.next!)
+      at_bat = AtBat.new(fielding_team, batting_team.batting_order.next!)
       update_half_inning(at_bat)
+      puts "#{outs} outs, #{runs} runs"
     end
     runs = base_path.run_count
   end

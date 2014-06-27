@@ -7,8 +7,4 @@ class Count
     @strikes = 0
   end
 
-  def record(pitch)
-
-  end
-
 end

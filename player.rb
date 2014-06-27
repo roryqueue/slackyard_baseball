@@ -13,10 +13,12 @@ class Player
     @speed = speed
   end
 
+################# PITCHER ######################
+
   def pitch_placement
     placed = nil
-    #MLB pitchers average 62% strikes: this averages 63.6% if average pitcher control is 70
-    if rand(throwing_accuracy + 40) > throwing_accuracy
+    #MLB pitchers average 62% strikes
+    if rand(throwing_accuracy + 50) > throwing_accuracy
       placed = :ball
     else
       placed = :strike
@@ -24,18 +26,20 @@ class Player
     placed
   end
 
+################# BATTER ######################
+
   def swing?(placement)
     roll = rand(100)
     if placement == :strike
       #MLB batters swing at 65% of strikes
-      if roll > 35 == true
+      if roll > 35
         swing = true
       else
         swing = false
       end
     elsif placement == :ball
       #MLB batters swing at 30% of balls
-      if roll > 70 == true
+      if roll > 70
         swing = true
       else
         swing = false
@@ -81,7 +85,7 @@ class Player
 
   def hit?
     if rand(100 + batting_contact) > batting_contact
-      ball = :out
+      ball = :fielded
     else
       ball = :hit
     end
@@ -100,6 +104,17 @@ class Player
     else hit = :single
     end
     hit
+  end
+
+################# FIELDER ######################
+
+  def field_ball
+    fielded = nil
+    if rand(500) > (400 + fielding)
+      fielded = false
+    else fielded = true
+    end
+    fielded
   end
 
 end
